@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Blob Maker — Free Random SVG Blob &amp; Wave Divider Generator | S3eidat Tools</title>
+<meta name="description" content="Generate organic SVG blob shapes and wave section dividers. Complexity and randomness sliders, solid or gradient fill, shareable seed in the URL, export SVG or PNG, copy the code. Free and private.">
+<meta property="og:title" content="Blob Maker — random organic SVG blobs and waves">
+<meta property="og:description" content="SVG blobs and wave dividers with seeds, gradients, SVG/PNG export. Runs in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="blob-maker">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Blob Maker</h1>
+    <p>Organic SVG blobs and wavy section dividers. Every shape comes from a seed, so the link in your address bar brings back the exact same one.</p>
+  </section>
+
+  <div class="bm-grid">
+    <section class="card stack">
+      <div class="row between">
+        <div class="seg" id="mode" role="group" aria-label="Shape">
+          <button aria-pressed="true" data-v="blob">Blob</button>
+          <button aria-pressed="false" data-v="wave">Wave divider</button>
+        </div>
+        <button class="btn primary" id="regen"><svg class="i"><use href="#i-refresh"/></svg>Regenerate</button>
+      </div>
+      <div class="canvas-box checker" id="preview" aria-label="Preview" role="img"></div>
+      <div class="row">
+        <button class="btn small" id="svg-dl"><svg class="i"><use href="#i-download"/></svg>SVG</button>
+        <button class="btn small" id="png-dl"><svg class="i"><use href="#i-download"/></svg>PNG</button>
+        <label class="field inline"><span class="sr">PNG width</span>
+          <select class="select mini" id="png-size" aria-label="PNG width"><option value="512">512 px</option><option value="1024" selected>1024 px</option><option value="2048">2048 px</option><option value="4096">4096 px</option></select>
+        </label>
+        <span class="grow"></span>
+        <button class="btn small" id="copy-svg"><svg class="i"><use href="#i-copy"/></svg>Copy SVG</button>
+        <button class="btn small ghost" id="copy-link">Copy link</button>
+      </div>
+    </section>
+
+    <section class="card stack">
+      <label class="field"><span class="row between"><span id="n-label">Complexity</span><span class="v" id="n-v"></span></span><input type="range" id="n" min="3" max="12"></label>
+      <label class="field"><span class="row between"><span>Randomness</span><span class="v" id="r-v"></span></span><input type="range" id="r" min="0" max="100"></label>
+      <div id="wave-only" class="stack" hidden>
+        <label class="field"><span class="row between"><span>Layers</span><span class="v" id="layers-v"></span></span><input type="range" id="layers" min="1" max="4"></label>
+        <label class="check"><input type="checkbox" id="flip"> Flip (wave at the top)</label>
+      </div>
+      <div>
+        <span class="lbl">Fill</span>
+        <div class="row mt">
+          <div class="seg" id="fill" role="group" aria-label="Fill">
+            <button aria-pressed="false" data-v="solid">Solid</button>
+            <button aria-pressed="true" data-v="grad">Gradient</button>
+          </div>
+          <input type="color" id="c1" aria-label="Color 1">
+          <input type="color" id="c2" aria-label="Color 2">
+          <button class="btn ghost small" id="swap" title="Swap colors">⇄</button>
+        </div>
+      </div>
+      <label class="field">Seed
+        <input class="input mono" id="seed" inputmode="numeric" autocomplete="off" spellcheck="false">
+      </label>
+      <div>
+        <span class="lbl">Palettes</span>
+        <div class="palettes mt" id="palettes"></div>
+      </div>
+      <details class="code">
+        <summary>SVG code</summary>
+        <pre class="out mt" id="code" tabindex="0"></pre>
+      </details>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
